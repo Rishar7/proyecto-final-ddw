@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="claro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contacto de la Terminal Güemes: formulario de consultas, teléfonos, correo, dirección y cómo llegar a la terminal.">
+  <title>Contacto — Terminal Güemes · Salta</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header class="encabezado">
+    <div class="encabezado-interno">
+      <a href="index.html" class="logo" aria-label="Terminal Güemes, ir al inicio">
+        <svg class="logo-icono" viewBox="0 0 48 48" role="img" aria-hidden="true">
+          <rect x="2" y="2" width="44" height="44" rx="10" fill="#a32633"/>
+          <path d="M2 34 L14 22 L24 32 L34 22 L46 34 L46 46 L2 46 Z" fill="#26201e"/>
+          <path d="M2 26 L14 14 L24 24 L34 14 L46 26" fill="none" stroke="#faf6ef" stroke-width="3"/>
+          <circle cx="24" cy="10" r="3.5" fill="#faf6ef"/>
+        </svg>
+        <span class="logo-texto">TERMINAL GÜEMES<small>CENTRO DE TRANSPORTE · SALTA</small></span>
+      </a>
+      <button class="boton-menu" id="botonMenu" aria-label="Abrir menú de navegación" aria-expanded="false">☰</button>
+      <nav class="nav-principal" id="navPrincipal" aria-label="Navegación principal">
+        <ul class="nav-lista">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="la-terminal.html">La Terminal</a></li>
+          <li><a href="contacto.html" class="activo">Contacto</a></li>
+          <li><a class="nav-cta" href="index.html#como-llego">¿Cómo llego?</a></li>
+          <li><button class="boton-tema" id="botonTema" aria-label="Cambiar entre modo claro y oscuro">🌙 Tema</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="seccion">
+      <div class="contenedor dos-columnas">
+
+        <!-- Columna 1: datos de contacto y cómo llegar -->
+        <div>
+          <p class="kicker">HABLEMOS</p>
+          <h2>Contacto.</h2>
+          <p class="intro">Consultas sobre servicios, horarios, encomiendas u objetos perdidos. Te respondemos dentro de las 48 horas hábiles.</p>
+
+          <ul class="datos-contacto">
+            <li><span class="icono">📍</span><div><strong>Dirección</strong><p>Av. Hipólito Yrigoyen 339, Ciudad de Salta (A4400)</p></div></li>
+            <li><span class="icono">📞</span><div><strong>Teléfono / WhatsApp</strong><p>+54 387 400-0000 · Atención de 06:00 a 22:00</p></div></li>
+            <li><span class="icono">✉️</span><div><strong>Correo</strong><p>hola@terminalguemes.com.ar</p></div></li>
+            <li><span class="icono">🚌</span><div><strong>Cómo llegar</strong><p>Corredores C1 y C2 desde el centro; estacionamiento propio con 80 cocheras y dársena de 15 minutos gratis.</p></div></li>
+            <li><span class="icono">🕐</span><div><strong>Horario de la terminal</strong><p>Todos los días de 05:30 a 23:45</p></div></li>
+          </ul>
+        </div>
+
+        <!-- Columna 2: formulario con validación en JavaScript -->
+        <div class="panel">
+          <h3 style="margin-bottom:1rem;">Escribinos</h3>
+
+          <!-- novalidate: desactiva la validación automática del navegador
+               para que la haga nuestro JavaScript y podamos mostrar
+               mensajes de error propios, claros y en español. -->
+          <form class="formulario-contacto" id="formularioContacto" novalidate>
+            <div>
+              <label for="nombre">Nombre y apellido *</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Ej.: Ricardo Samson" autocomplete="name">
+              <p class="error-campo" id="errorNombre">Escribí tu nombre (mínimo 2 letras).</p>
+            </div>
+
+            <div>
+              <label for="email">Correo electrónico *</label>
+              <input type="email" id="email" name="email" placeholder="tu@correo.com" autocomplete="email">
+              <p class="error-campo" id="errorEmail">Ingresá un correo válido, por ejemplo nombre@dominio.com.</p>
+            </div>
+
+            <div>
+              <label for="servicio">¿Sobre qué servicio consultás? *</label>
+              <select id="servicio" name="servicio">
+                <option value="">— Elegí una opción —</option>
+                <option value="c1">C1 · Centro – San Lorenzo</option>
+                <option value="c2">C2 · Centro – Cerro San Bernardo</option>
+                <option value="v1">V1 · Valle de Lerma</option>
+                <option value="ec">EC · Expreso El Cardón (Cafayate)</option>
+                <option value="terminal">La terminal (instalaciones, objetos perdidos)</option>
+              </select>
+              <p class="error-campo" id="errorServicio">Elegí el servicio sobre el que querés consultar.</p>
+            </div>
+
+            <div>
+              <label for="mensaje">Tu mensaje *</label>
+              <textarea id="mensaje" name="mensaje" rows="5" placeholder="Contanos tu consulta con el mayor detalle posible…"></textarea>
+              <p class="error-campo" id="errorMensaje">El mensaje tiene que tener al menos 10 caracteres.</p>
+            </div>
+
+            <button type="submit" class="boton boton-primario">Enviar consulta</button>
+
+            <!-- Confirmación visible tras validar: el usuario siempre sabe
+                 que su acción funcionó (visibilidad del estado del sistema). -->
+            <p class="mensaje-exito" id="mensajeExito" role="status"></p>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie-grilla">
+      <div>
+        <h4>Terminal Güemes</h4>
+        <p>Centro de transporte ficticio de la ciudad de Salta, inspirado en la terminal real. Identidad basada en el poncho güemesiano.</p>
+      </div>
+      <div>
+        <h4>El sitio</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="la-terminal.html">La Terminal</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="linea-cardon/index.html">Expreso El Cardón</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Proyecto</h4>
+        <ul>
+          <li><a href="../index.html">Consultora Samson Digital</a></li>
+          <li><a href="../personal/index.html">Página personal del autor</a></li>
+          <li><a href="../docs/carpeta-de-diseno.pdf">Documentación (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="legal contenedor">Sitio ficticio con fines académicos — Trabajo Práctico · UADE · Diseño y Desarrollo Web (10244) · 2026 · Ricardo Salomon Samson Sanchez.</p>
+  </footer>
+
+  <script src="js/terminal.js"></script>
+</body>
+</html>

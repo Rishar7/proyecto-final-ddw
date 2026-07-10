@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="claro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Expreso El Cardón: servicio Salta – Cafayate por la RN 68 y la Quebrada de las Conchas. Paradas, horarios, tarifas y accesibilidad.">
+  <title>Expreso El Cardón — Salta · Cafayate | Terminal Güemes</title>
+  <!-- Reutiliza la hoja de estilos de la terminal: misma base, identidad propia -->
+  <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body class="pagina-cardon">
+
+  <header class="encabezado" style="border-bottom-color: var(--ec-terracota);">
+    <div class="encabezado-interno">
+      <a href="index.html" class="logo" aria-label="Expreso El Cardón, inicio de la página">
+        <!-- Isologotipo propio de la línea: un cardón (cactus del NOA).
+             Cada servicio de la red tiene su propia identidad visual. -->
+        <svg class="logo-icono" viewBox="0 0 48 48" role="img" aria-hidden="true">
+          <rect x="2" y="2" width="44" height="44" rx="10" fill="#c2542b"/>
+          <path d="M24 40 V12 M24 22 c0 -6 -7 -4 -7 -10 M24 26 c0 -6 8 -5 8 -12" fill="none" stroke="#faf6ef" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="36" cy="10" r="4" fill="#f3c9a6"/>
+        </svg>
+        <span class="logo-texto">EXPRESO EL CARDÓN<small>SALTA – CAFAYATE · RN 68</small></span>
+      </a>
+      <button class="boton-menu" id="botonMenu" aria-label="Abrir menú de navegación" aria-expanded="false">☰</button>
+      <nav class="nav-principal" id="navPrincipal" aria-label="Navegación principal">
+        <ul class="nav-lista">
+          <li><a href="#recorrido">Recorrido</a></li>
+          <li><a href="#horarios">Horarios</a></li>
+          <li><a href="#accesibilidad">Accesibilidad</a></li>
+          <li><a href="../index.html">← Terminal Güemes</a></li>
+          <li><a class="nav-cta" href="#horarios">Ver horarios</a></li>
+          <li><button class="boton-tema" id="botonTema" aria-label="Cambiar entre modo claro y oscuro">🌙 Tema</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ================= HÉROE DE LA LÍNEA ================= -->
+    <section class="heroe">
+      <div class="contenedor">
+        <p class="kicker" style="color:#f3c9a6;">SERVICIO EC · MEDIA DISTANCIA</p>
+        <h1>Salta – Cafayate,<br>por la Quebrada de las Conchas.</h1>
+        <p class="bajada">183 km por la Ruta Nacional 68 atravesando el Valle de Lerma y los paredones rojos de la Quebrada. El paisaje va incluido en el boleto.</p>
+        <div class="botonera" style="align-items:center;">
+          <a href="#horarios" class="boton boton-primario" style="background-color: var(--ec-terracota);">Ver horarios</a>
+          <!-- Estado calculado con JavaScript según la hora real -->
+          <span class="chapa-estado"><span class="punto-estado" id="puntoEstado" style="background-color:#2e7d46;"></span> <span id="textoEstado">Consultando estado…</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Datos duros del servicio -->
+    <div class="contenedor">
+      <ul class="metricas" style="list-style:none;">
+        <li class="metrica"><strong style="color:var(--ec-terracota);">183 km</strong><span>de recorrido</span></li>
+        <li class="metrica"><strong style="color:var(--ec-terracota);">3 h 30</strong><span>duración estimada</span></li>
+        <li class="metrica"><strong style="color:var(--ec-terracota);">6</strong><span>salidas por día</span></li>
+        <li class="metrica"><strong style="color:var(--ec-terracota);">9</strong><span>paradas intermedias</span></li>
+      </ul>
+    </div>
+
+    <!-- ================= RECORRIDO (línea de tiempo vertical) ================= -->
+    <section class="seccion" id="recorrido">
+      <div class="contenedor">
+        <p class="kicker" style="color:var(--ec-terracota);">DE PUNTA A PUNTA</p>
+        <h2>El recorrido, parada por parada.</h2>
+        <p class="intro">Lista vertical pensada para leer desde el celular mientras viajás: una parada debajo de la otra, con su kilómetro y qué encontrás en cada lugar. Podés filtrarlas con el buscador.</p>
+
+        <!-- Buscador de paradas: filtra la lista con JavaScript -->
+        <div class="panel" style="margin-bottom:2rem;">
+          <label for="buscadorParadas">Buscar una parada</label>
+          <input type="search" id="buscadorParadas" placeholder="Ej.: Alemanía, Garganta del Diablo…">
+          <p class="sin-resultados" id="sinResultados">No encontramos paradas con ese nombre.</p>
+        </div>
+
+        <ol class="recorrido" id="listaParadas">
+          <li class="parada parada-cabecera">
+            <p class="km">KM 0 · CABECERA</p>
+            <h3>Terminal Güemes — Ciudad de Salta</h3>
+            <p>Salida desde el Andén 5. Boleterías, sala de espera con USB y guarda equipaje. Preembarque 15 minutos antes.</p>
+            <figure>
+              <!-- FOTO REAL SUGERIDA: fachada de la terminal de Salta.
+                   Reemplazar este SVG por <img src="img/terminal.jpg" alt="..."> -->
+              <div class="marco-foto"><svg viewBox="0 0 430 180" role="img" aria-label="Ilustración de la terminal de Salta"><rect width="430" height="180" fill="#e9d8c3"/><rect x="40" y="70" width="350" height="70" rx="6" fill="#a32633"/><rect x="60" y="90" width="60" height="50" fill="#faf6ef"/><rect x="150" y="90" width="60" height="50" fill="#faf6ef"/><rect x="240" y="90" width="60" height="50" fill="#faf6ef"/><path d="M30 70 L215 20 L400 70 Z" fill="#26201e"/><circle cx="370" cy="40" r="16" fill="#f3c9a6"/></svg></div>
+              <figcaption>Terminal de Salta. (Foto ilustrativa: reemplazar por foto propia.)</figcaption>
+            </figure>
+          </li>
+
+          <li class="parada">
+            <p class="km">KM 37 · 40 MIN</p>
+            <h3>El Carril</h3>
+            <p>Corazón tabacalero del Valle de Lerma. Parada sobre la plaza principal; conexión con el servicio V1 de la red.</p>
+          </li>
+
+          <li class="parada">
+            <p class="km">KM 60 · 1 H 05</p>
+            <h3>Coronel Moldes</h3>
+            <p>Acceso al dique Cabra Corral, uno de los espejos de agua más grandes del norte argentino. Bajan pescadores y turistas de aventura.</p>
+          </li>
+
+          <li class="parada">
+            <p class="km">KM 85 · 1 H 30</p>
+            <h3>La Viña</h3>
+            <p>Pueblo de adobe y siesta larga. Última parada antes de entrar al tramo de la quebrada.</p>
+          </li>
+
+          <li class="parada">
+            <p class="km">KM 97 · 1 H 45</p>
+            <h3>Talapampa</h3>
+            <p>Parada técnica de 10 minutos: baños, proveeduría y las famosas tortillas a la parrilla.</p>
+          </li>
+
+          <li class="parada">
+            <p class="km">KM 105 · 2 H</p>
+            <h3>Alemanía</h3>
+            <p>Antiguo pueblo ferroviario, casi fantasma, puerta de entrada a la Quebrada de las Conchas. Los paredones empiezan a teñirse de rojo.</p>
+            <figure>
+              <!-- FOTO REAL SUGERIDA: paredones rojos de la Quebrada -->
+              <div class="marco-foto"><svg viewBox="0 0 430 180" role="img" aria-label="Ilustración de la Quebrada de las Conchas"><rect width="430" height="180" fill="#f3c9a6"/><path d="M0 180 L60 60 L120 180 Z" fill="#c2542b"/><path d="M90 180 L170 30 L250 180 Z" fill="#a34620"/><path d="M220 180 L300 70 L380 180 Z" fill="#c2542b"/><path d="M330 180 L400 90 L430 180 Z" fill="#8a3a1c"/><circle cx="60" cy="40" r="18" fill="#faf6ef"/><path d="M0 180 h430" stroke="#6f6259" stroke-width="8"/><path d="M10 176 h30 M60 176 h30 M110 176 h30 M160 176 h30 M210 176 h30 M260 176 h30 M310 176 h30 M360 176 h30" stroke="#faf6ef" stroke-width="3"/></svg></div>
+              <figcaption>Quebrada de las Conchas, RN 68. (Ilustración: reemplazar por foto propia.)</figcaption>
+            </figure>
+          </li>
+
+          <li class="parada">
+            <p class="km">KM 130 · 2 H 30</p>
+            <h3>Garganta del Diablo</h3>
+            <p>Parada panorámica de 15 minutos en la formación más famosa de la quebrada. Sí: el chofer espera para la foto.</p>
+          </li>
+
+          <li class="parada">
+            <p class="km">KM 132 · 2 H 50</p>
+            <h3>El Anfiteatro</h3>
+            <p>Cañón natural con acústica perfecta; casi siempre hay un músico tocando la quena. Parada a demanda.</p>
+          </li>
+
+          <li class="parada">
+            <p class="km">KM 160 · 3 H 10</p>
+            <h3>Tres Cruces</h3>
+            <p>Mirador alto del valle de Cafayate: primera vista de los viñedos. Parada a demanda.</p>
+          </li>
+
+          <li class="parada parada-cabecera">
+            <p class="km">KM 183 · 3 H 30 · CABECERA</p>
+            <h3>Cafayate — Terminal</h3>
+            <p>Llegada a la capital del torrontés, entre viñedos y montañas. Conexiones a Tolombón y San Carlos.</p>
+            <figure>
+              <!-- FOTO REAL SUGERIDA: viñedos de Cafayate -->
+              <div class="marco-foto"><svg viewBox="0 0 430 180" role="img" aria-label="Ilustración de viñedos de Cafayate"><rect width="430" height="180" fill="#e9d8c3"/><path d="M0 90 L110 30 L220 90 L330 40 L430 90 V180 H0 Z" fill="#b98a12" opacity="0.5"/><path d="M0 180 V120 h430 v60 Z" fill="#2e7d46" opacity="0.6"/><path d="M20 120 v60 M70 120 v60 M120 120 v60 M170 120 v60 M220 120 v60 M270 120 v60 M320 120 v60 M370 120 v60" stroke="#26201e" stroke-width="4" opacity="0.5"/><circle cx="380" cy="35" r="16" fill="#faf6ef"/></svg></div>
+              <figcaption>Viñedos a la llegada a Cafayate. (Ilustración: reemplazar por foto propia.)</figcaption>
+            </figure>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= HORARIOS Y TARIFAS ================= -->
+    <section class="seccion seccion-alterna" id="horarios">
+      <div class="contenedor dos-columnas">
+        <div>
+          <p class="kicker" style="color:var(--ec-terracota);">PLANIFICÁ</p>
+          <h2>Horarios.</h2>
+          <p class="intro">Próxima salida desde Salta: <strong id="proximaSalida">calculando…</strong></p>
+          <table class="tabla">
+            <caption class="solo-lector">Horarios de salida desde Salta y desde Cafayate</caption>
+            <thead><tr><th scope="col">Sale de Salta</th><th scope="col">Llega a Cafayate</th><th scope="col">Sale de Cafayate</th><th scope="col">Llega a Salta</th></tr></thead>
+            <tbody>
+              <tr><td>06:30</td><td>10:00</td><td>06:30</td><td>10:00</td></tr>
+              <tr><td>09:00</td><td>12:30</td><td>09:30</td><td>13:00</td></tr>
+              <tr><td>11:30</td><td>15:00</td><td>12:00</td><td>15:30</td></tr>
+              <tr><td>14:30</td><td>18:00</td><td>15:00</td><td>18:30</td></tr>
+              <tr><td>17:00</td><td>20:30</td><td>17:30</td><td>21:00</td></tr>
+              <tr><td>19:30</td><td>23:00</td><td>19:30</td><td>23:00</td></tr>
+            </tbody>
+          </table>
+
+          <h3 style="margin-top:2rem;">¿Cuándo viaja más gente?</h3>
+          <p class="intro" style="margin-bottom:0;">Ocupación promedio por franja: si querés ventanilla, evitá las salidas de la mañana del fin de semana.</p>
+          <!-- Gráfico de barras hecho solo con CSS: las alturas representan % de ocupación -->
+          <div class="grafico-frecuencia" aria-label="Gráfico de ocupación promedio por franja horaria">
+            <div class="barra" style="height:88%;"><span>06:30</span></div>
+            <div class="barra" style="height:65%;"><span>09:00</span></div>
+            <div class="barra" style="height:45%;"><span>11:30</span></div>
+            <div class="barra" style="height:58%;"><span>14:30</span></div>
+            <div class="barra" style="height:72%;"><span>17:00</span></div>
+            <div class="barra" style="height:38%;"><span>19:30</span></div>
+          </div>
+          <p style="height:1.6rem;"></p>
+        </div>
+
+        <div>
+          <p class="kicker" style="color:var(--ec-terracota);">TARIFAS</p>
+          <h2>¿Cuánto sale?</h2>
+          <table class="tabla">
+            <caption class="solo-lector">Tarifas por tipo de pasajero</caption>
+            <thead><tr><th scope="col">Pasaje</th><th scope="col">Tramo completo</th></tr></thead>
+            <tbody>
+              <tr><td>General</td><td>$ 12.500</td></tr>
+              <tr><td>Jubilados y pensionados</td><td>$ 8.750 (30 % off)</td></tr>
+              <tr><td>Estudiantes con credencial</td><td>$ 9.400 (25 % off)</td></tr>
+              <tr><td>Menores de 5 años</td><td>Sin cargo (en brazos)</td></tr>
+              <tr><td>Bicicleta en bodega</td><td>$ 2.000</td></tr>
+            </tbody>
+          </table>
+          <p class="intro" style="margin-top:1rem;">Tramos intermedios: tarifa proporcional por kilómetro. Compra en boletería (Andén 5), por WhatsApp o en la web de la terminal.</p>
+
+          <div class="panel" style="margin-top:1.4rem; border-left:6px solid var(--ec-terracota);">
+            <h3>Datos útiles</h3>
+            <p style="color:var(--gris);">Equipaje: 1 valija en bodega + 1 bolso de mano incluidos. Parada técnica con baños en Talapampa. Unidades con aire acondicionado, wifi y butacas reclinables.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ACCESIBILIDAD DEL VEHÍCULO ================= -->
+    <section class="seccion" id="accesibilidad">
+      <div class="contenedor">
+        <p class="kicker" style="color:var(--ec-terracota);">VIAJAR CÓMODOS ES PARA TODOS</p>
+        <h2>Accesibilidad del servicio.</h2>
+        <p class="intro">No hablamos solo del sitio web: así están equipadas las unidades y las paradas del Expreso El Cardón.</p>
+
+        <div class="grilla-accesibilidad">
+          <article class="instalacion"><span class="icono">♿</span><h3>Espacio para silla de ruedas</h3><p>Todas las unidades llevan anclaje para silla de ruedas y rampa de acceso en la puerta trasera. Se reserva sin cargo al comprar el pasaje.</p></article>
+          <article class="instalacion"><span class="icono">🔊</span><h3>Anuncio sonoro de paradas</h3><p>Cada parada se anuncia por audio y en la pantalla LED interior, pensado para personas con baja visión o que viajan por primera vez.</p></article>
+          <article class="instalacion"><span class="icono">🔌</span><h3>USB en todas las butacas</h3><p>Puerto de carga por asiento: llegás a Cafayate con batería para las fotos de la quebrada.</p></article>
+          <article class="instalacion"><span class="icono">🐕‍🦺</span><h3>Perros de asistencia</h3><p>Viajan sin cargo junto a su persona, sin transportadora ni turno previo.</p></article>
+          <article class="instalacion"><span class="icono">👵</span><h3>Asientos prioritarios</h3><p>Cuatro butacas delanteras señalizadas para personas mayores, embarazadas y personas con movilidad reducida.</p></article>
+          <article class="instalacion"><span class="icono">🧭</span><h3>Señalética clara en paradas</h3><p>Carteles con letra grande y alto contraste (terracota sobre crema), con horario y kilómetro de cada parada.</p></article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie" style="border-top-color: var(--ec-terracota);">
+    <div class="contenedor pie-grilla">
+      <div>
+        <h4>Expreso El Cardón</h4>
+        <p>Servicio ficticio de media distancia de la red Terminal Güemes. El recorrido y las paradas siguen la geografía real de la RN 68; la empresa y sus horarios son simulados.</p>
+      </div>
+      <div>
+        <h4>La línea</h4>
+        <ul>
+          <li><a href="#recorrido">Recorrido y paradas</a></li>
+          <li><a href="#horarios">Horarios y tarifas</a></li>
+          <li><a href="#accesibilidad">Accesibilidad</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>La red</h4>
+        <ul>
+          <li><a href="../index.html">Terminal Güemes (inicio)</a></li>
+          <li><a href="../la-terminal.html">Plano y servicios</a></li>
+          <li><a href="../contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="legal contenedor">Sitio ficticio con fines académicos — Trabajo Práctico · UADE · Diseño y Desarrollo Web (10244) · 2026 · Ricardo Salomon Samson Sanchez.</p>
+  </footer>
+
+  <!-- Se reutiliza el JS general (menú + tema) y se suma el propio de la línea -->
+  <script src="../js/terminal.js"></script>
+  <script src="js/linea.js"></script>
+</body>
+</html>

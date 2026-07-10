@@ -1,0 +1,521 @@
+/* ============================================================
+   TERMINAL GÜEMES – Centro de Transporte de Salta
+   Hoja de estilos principal del sitio de la terminal.
+   Autor: Ricardo Salomon Samson Sanchez – UADE – DDW 2026
+   Sitio ficticio con fines académicos (Trabajo Práctico).
+   ------------------------------------------------------------
+   Sistema de diseño:
+   - Variables CSS (custom properties) para colores y tipografía.
+   - El color NO es solo estético: cada servicio tiene un color
+     funcional que lo identifica en todo el sitio (código de color).
+   - Modo claro / oscuro con el atributo [data-tema="oscuro"].
+   - Mobile first: los estilos base son para celular y con
+     media queries se adapta a pantallas grandes.
+   ============================================================ */
+
+/* ----------- 1. VARIABLES DE DISEÑO (design tokens) ---------- */
+:root {
+  /* Color de marca: rojo del poncho salteño (güemesiano) */
+  --marca: #a32633;
+  --marca-oscuro: #7e1c27;
+  --carbon: #26201e;          /* texto principal (negro cálido) */
+  --gris: #6f6259;            /* texto secundario */
+  --crema: #faf6ef;           /* fondo general cálido */
+  --blanco: #ffffff;          /* fondo de tarjetas */
+  --borde: #e8dfd3;           /* bordes suaves */
+
+  /* Colores funcionales por servicio (código de color) */
+  --c1-verde: #2e7d46;        /* C1 Centro – San Lorenzo */
+  --c2-azul: #2563b8;         /* C2 Centro – Cerro San Bernardo */
+  --v1-dorado: #b98a12;       /* V1 Valle de Lerma */
+  --ec-terracota: #c2542b;    /* EC Expreso El Cardón (Cafayate) */
+
+  /* Estados del sistema de alertas */
+  --ok: #2e7d46;
+  --alerta: #b98a12;
+  --corte: #b3282d;
+
+  /* Tipografía: una sola familia sans-serif del sistema.
+     Ventaja: máxima legibilidad en pantalla y carga cero
+     (no se descargan fuentes externas = sitio más liviano). */
+  --fuente: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --radio: 14px;              /* esquinas redondeadas de tarjetas */
+  --sombra: 0 4px 18px rgba(38, 32, 30, 0.08);
+  --ancho-max: 1100px;        /* contenedor: controla el largo de línea */
+}
+
+/* Modo oscuro: solo se redefinen las variables, el resto del
+   CSS no cambia. Es una medida de accesibilidad (baja visión,
+   sensibilidad a la luz) y de confort en la espera nocturna. */
+[data-tema="oscuro"] {
+  --carbon: #f2ece4;
+  --gris: #bdb2a7;
+  --crema: #17130f;
+  --blanco: #221c17;
+  --borde: #3a322b;
+  --sombra: 0 4px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* ----------------- 2. RESET Y BASE ----------------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--fuente);
+  background-color: var(--crema);
+  color: var(--carbon);
+  line-height: 1.6;
+  font-size: 1.06rem; /* cuerpo generoso: accesibilidad para adultos mayores */
+}
+
+img, svg { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+.contenedor {
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 0 1.2rem;
+}
+
+/* Clase de accesibilidad: texto solo para lectores de pantalla */
+.solo-lector {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ----------------- 3. ENCABEZADO Y NAVEGACIÓN ----------------- */
+.encabezado {
+  position: sticky; top: 0; z-index: 50;   /* barra siempre visible (Ley de Fitts) */
+  background-color: var(--blanco);
+  border-bottom: 3px solid var(--marca);
+  box-shadow: var(--sombra);
+}
+
+.encabezado-interno {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; padding: 0.7rem 1.2rem;
+  max-width: var(--ancho-max); margin: 0 auto;
+}
+
+.logo {
+  display: flex; align-items: center; gap: 0.6rem;
+  text-decoration: none; font-weight: 800; letter-spacing: 0.5px;
+}
+
+.logo-icono { width: 42px; height: 42px; }
+
+.logo-texto { font-size: 1.05rem; line-height: 1.15; }
+.logo-texto small { display: block; font-size: 0.68rem; font-weight: 600; color: var(--gris); letter-spacing: 1.5px; }
+
+/* Menú de solo 3 ítems + contacto: decisión basada en la Ley de Hick
+   (menos opciones = decisión más rápida). */
+.nav-lista {
+  display: flex; gap: 0.4rem; list-style: none; align-items: center;
+}
+
+.nav-lista a {
+  display: block; padding: 0.55rem 0.9rem;
+  text-decoration: none; font-weight: 600; font-size: 0.95rem;
+  border-radius: 8px;
+}
+
+.nav-lista a:hover { background-color: var(--crema); color: var(--marca); }
+
+.nav-lista a.activo { color: var(--marca); border-bottom: 3px solid var(--marca); border-radius: 8px 8px 0 0; }
+
+/* Botón hamburguesa: solo visible en móvil */
+.boton-menu {
+  display: none; background: none; border: 2px solid var(--borde);
+  border-radius: 8px; padding: 0.4rem 0.6rem; cursor: pointer;
+  font-size: 1.25rem; color: var(--carbon);
+}
+
+/* Conmutador de tema claro/oscuro */
+.boton-tema {
+  background: none; border: 2px solid var(--borde); border-radius: 999px;
+  padding: 0.35rem 0.7rem; cursor: pointer; font-size: 1rem; color: var(--carbon);
+}
+.boton-tema:hover { border-color: var(--marca); }
+
+/* ----------------- 4. HÉROE (portada) ----------------- */
+.heroe {
+  background:
+    linear-gradient(115deg, rgba(38,32,30,0.88) 40%, rgba(163,38,51,0.75)),
+    repeating-linear-gradient(45deg, #7e1c27 0 26px, #26201e 26px 52px); /* guarda del poncho */
+  color: #fdf8f1;
+  padding: 4.2rem 0 4.6rem;
+  position: relative;
+}
+
+/* Cinta de guarda al pie del héroe: la trama del poncho salteño
+   aparece nítida como firma de la marca. Hecha con un pseudo-elemento
+   y un gradiente repetido: cero imágenes. */
+.heroe::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 10px;
+  background: repeating-linear-gradient(-45deg, #a32633 0 14px, #26201e 14px 28px, #faf6ef 28px 32px);
+}
+
+.heroe .kicker { color: #f3c9a6; }
+
+.heroe h1 { font-size: clamp(2rem, 5.4vw, 3.4rem); line-height: 1.12; margin: 0.4rem 0 1rem; }
+
+.heroe p.bajada { max-width: 34rem; font-size: 1.12rem; color: #f0e6da; margin-bottom: 1.6rem; }
+
+/* Kicker con guion de marca adelante (pseudo-elemento ::before):
+   ancla visual que ordena la lectura de cada bloque. */
+.kicker {
+  text-transform: uppercase; letter-spacing: 3px;
+  font-size: 0.78rem; font-weight: 700; color: var(--marca);
+  display: inline-flex; align-items: center; gap: 0.5rem;
+}
+.kicker::before { content: ""; width: 26px; height: 3px; border-radius: 2px; background-color: currentColor; }
+
+.botonera { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
+/* Botones en forma de píldora (border-radius: 999px): grandes y con
+   buen padding (Ley de Fitts), con microinteracción al pasar el mouse:
+   se elevan (transform) y proyectan sombra (feedback = visibilidad
+   del estado del sistema). La flecha del primario se dibuja con el
+   pseudo-elemento ::after y se desplaza en hover (transition). */
+.boton {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.9rem 1.8rem; border-radius: 999px;
+  text-decoration: none; font-weight: 700; font-size: 1rem;
+  border: 2px solid transparent; cursor: pointer; font-family: var(--fuente);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+.boton:hover { transform: translateY(-3px); }
+.boton:active { transform: translateY(-1px); }
+.boton-primario { background-color: var(--marca); color: #fff; }
+.boton-primario::after { content: "→"; transition: transform 0.18s ease; }
+.boton-primario:hover { background-color: var(--marca-oscuro); box-shadow: 0 10px 22px rgba(163, 38, 51, 0.35); }
+.boton-primario:hover::after { transform: translateX(4px); }
+.boton-secundario { border-color: #fdf8f1; color: #fdf8f1; background: transparent; }
+.boton-secundario:hover { background-color: rgba(255,255,255,0.14); box-shadow: 0 10px 22px rgba(0,0,0,0.25); }
+
+/* CTA destacado dentro de la barra de navegación: el acceso a la
+   acción más buscada ("¿Cómo llego?") viaja siempre con el usuario. */
+.nav-cta {
+  background-color: var(--marca); color: #fff !important;
+  border-radius: 999px; padding: 0.5rem 1.1rem !important;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+.nav-cta:hover { background-color: var(--marca-oscuro) !important; transform: translateY(-2px); }
+
+/* Detalle de marca: hasta la selección de texto es güemesiana */
+::selection { background-color: var(--marca); color: #fff; }
+
+/* Foco visible y consistente para navegación con teclado */
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--marca); outline-offset: 2px; border-radius: 8px;
+}
+
+/* ----------------- 5. SECCIONES Y TARJETAS ----------------- */
+.seccion { padding: 3.6rem 0; }
+.seccion-alterna { background-color: var(--blanco); }
+
+/* Título de sección con acento: barrita corta debajo (::after),
+   redondeada y en color de marca. Jerarquiza sin subrayar todo. */
+.seccion h2 { font-size: clamp(1.5rem, 3.4vw, 2.2rem); margin: 0.3rem 0 0.9rem; position: relative; padding-bottom: 0.55rem; }
+.seccion h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 52px; height: 5px; border-radius: 3px; background-color: var(--marca); }
+.seccion .intro { color: var(--gris); max-width: 40rem; margin-bottom: 2rem; }
+
+/* Métricas de credibilidad */
+.metricas {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+  margin-top: -2.4rem; position: relative;
+}
+.metrica {
+  background-color: var(--blanco); border: 1px solid var(--borde);
+  border-top: 4px solid var(--marca);
+  border-radius: var(--radio); padding: 1.1rem; text-align: center;
+  box-shadow: var(--sombra);
+  transition: transform 0.15s ease;
+}
+.metrica:hover { transform: translateY(-4px); }
+.metrica strong { display: block; font-size: 1.7rem; color: var(--marca); }
+.metrica span { font-size: 0.85rem; color: var(--gris); }
+
+/* Tarjetas de servicios/líneas. Toda la tarjeta es clickeable (Fitts). */
+.grilla-servicios {
+  display: grid; grid-template-columns: 1fr; gap: 1.2rem;
+}
+
+.tarjeta-servicio {
+  background-color: var(--blanco); border: 1px solid var(--borde);
+  border-top: 6px solid var(--color-servicio, var(--marca)); /* color funcional */
+  border-radius: 18px; padding: 1.3rem; box-shadow: var(--sombra);
+  text-decoration: none; display: flex; flex-direction: column; gap: 0.5rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.tarjeta-servicio:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px rgba(38, 32, 30, 0.16);
+}
+
+/* Chapa del servicio: forma de cartel de andén (una esquina recta,
+   como la señalética real de las terminales). */
+.chapa {
+  display: inline-block; align-self: flex-start;
+  background-color: var(--color-servicio, var(--marca)); color: #fff;
+  font-weight: 800; padding: 0.25rem 0.85rem;
+  border-radius: 12px 12px 12px 3px; font-size: 0.95rem;
+  box-shadow: 0 3px 8px rgba(38, 32, 30, 0.18);
+}
+
+.tarjeta-servicio h3 { font-size: 1.15rem; }
+.tarjeta-servicio p { color: var(--gris); font-size: 0.95rem; }
+.tarjeta-servicio .dato { font-size: 0.85rem; font-weight: 700; color: var(--color-servicio, var(--marca)); }
+
+/* ----------------- 6. BUSCADOR "¿CÓMO LLEGO?" ----------------- */
+.panel {
+  background-color: var(--blanco); border: 1px solid var(--borde);
+  border-radius: var(--radio); padding: 1.6rem; box-shadow: var(--sombra);
+}
+
+.formulario-viaje {
+  display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1rem;
+}
+
+label { font-weight: 700; font-size: 0.9rem; display: block; margin-bottom: 0.3rem; }
+
+select, input, textarea {
+  width: 100%; padding: 0.8rem; border: 2px solid var(--borde);
+  border-radius: 10px; font-family: var(--fuente); font-size: 1rem;
+  background-color: var(--crema); color: var(--carbon);
+}
+select:focus, input:focus, textarea:focus {
+  outline: 3px solid rgba(163, 38, 51, 0.35); border-color: var(--marca);
+}
+
+/* Resultado del buscador (visibilidad del estado del sistema: Nielsen) */
+.resultado-viaje {
+  margin-top: 1.2rem; padding: 1.2rem; border-radius: 10px;
+  border-left: 6px solid var(--marca); background-color: var(--crema);
+  display: none; /* se muestra desde JavaScript */
+}
+.resultado-viaje.visible { display: block; }
+.resultado-viaje h4 { margin-bottom: 0.4rem; }
+.resultado-viaje ul { list-style: none; }
+.resultado-viaje li { padding: 0.25rem 0; border-bottom: 1px dashed var(--borde); font-size: 0.98rem; }
+.resultado-viaje li:last-child { border-bottom: none; }
+
+/* ----------------- 7. ALERTAS EN TIEMPO REAL ----------------- */
+.lista-alertas { list-style: none; display: grid; gap: 0.9rem; }
+
+.alerta-item {
+  display: flex; gap: 0.9rem; align-items: flex-start;
+  background-color: var(--blanco); border: 1px solid var(--borde);
+  border-radius: var(--radio); padding: 1rem 1.2rem; box-shadow: var(--sombra);
+}
+
+.punto-estado { width: 14px; height: 14px; border-radius: 50%; margin-top: 0.4rem; flex-shrink: 0; }
+.estado-ok { background-color: var(--ok); }
+.estado-alerta { background-color: var(--alerta); }
+.estado-corte { background-color: var(--corte); }
+
+.alerta-item strong { display: block; }
+.alerta-item time { font-size: 0.8rem; color: var(--gris); }
+.alerta-item p { font-size: 0.95rem; color: var(--gris); }
+
+/* Pizarra de próximas salidas */
+.pizarra { width: 100%; border-collapse: collapse; }
+.pizarra th, .pizarra td { padding: 0.7rem 0.6rem; text-align: left; border-bottom: 1px solid var(--borde); }
+.pizarra th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gris); }
+.pizarra .anden { font-weight: 800; color: var(--marca); }
+
+/* ----------------- 8. PLANO INTERACTIVO DE LA TERMINAL ----------------- */
+.plano-caja { display: grid; gap: 1.2rem; }
+
+.plano-svg { width: 100%; height: auto; border-radius: var(--radio); border: 1px solid var(--borde); background-color: var(--blanco); }
+
+/* Cada sector del plano es un botón: la ZONA COMPLETA es clickeable
+   (objetivo grande = Ley de Fitts) y se navega con teclado (Tab + Enter). */
+.punto-plano { cursor: pointer; }
+.punto-plano .zona { transition: opacity 0.15s ease, stroke-width 0.15s ease; stroke: transparent; }
+.punto-plano:hover .zona,
+.punto-plano:focus .zona,
+.punto-plano.seleccionado .zona {
+  opacity: 0.5;
+  stroke: var(--marca);
+  stroke-width: 3;
+}
+.punto-plano circle { transition: r 0.15s ease; }
+.punto-plano:hover circle, .punto-plano:focus circle { r: 12; }
+.punto-plano:focus { outline: none; } /* el resaltado de la zona reemplaza al outline */
+.punto-plano text { pointer-events: none; } /* el clic siempre lo recibe el grupo */
+
+.info-plano {
+  border-left: 6px solid var(--marca); background-color: var(--blanco);
+  border-radius: var(--radio); padding: 1.2rem; box-shadow: var(--sombra);
+  border-top: 1px solid var(--borde);
+}
+.info-plano h4 { margin-bottom: 0.3rem; }
+.info-plano p { color: var(--gris); }
+
+/* Tarjetas de servicios de la terminal (baños, informes, etc.) */
+.grilla-instalaciones { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.instalacion {
+  background-color: var(--blanco); border: 1px solid var(--borde);
+  border-radius: var(--radio); padding: 1.1rem; box-shadow: var(--sombra);
+}
+.instalacion .icono { font-size: 1.6rem; }
+.instalacion h3 { font-size: 1rem; margin: 0.3rem 0; }
+.instalacion p { font-size: 0.88rem; color: var(--gris); }
+
+/* ----------------- 9. PREGUNTAS FRECUENTES (acordeón) ----------------- */
+.faq-item { border: 1px solid var(--borde); border-radius: 10px; margin-bottom: 0.8rem; background-color: var(--blanco); overflow: hidden; }
+
+.faq-pregunta {
+  width: 100%; text-align: left; padding: 1rem 1.2rem; cursor: pointer;
+  background: none; border: none; font-family: var(--fuente);
+  font-size: 1rem; font-weight: 700; color: var(--carbon);
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+}
+.faq-pregunta::after { content: "+"; font-size: 1.3rem; color: var(--marca); }
+.faq-item.abierto .faq-pregunta::after { content: "–"; }
+
+.faq-respuesta { display: none; padding: 0 1.2rem 1.1rem; color: var(--gris); }
+.faq-item.abierto .faq-respuesta { display: block; }
+
+/* ----------------- 10. FORMULARIO DE CONTACTO ----------------- */
+.formulario-contacto { display: grid; gap: 1rem; }
+.error-campo { color: var(--corte); font-size: 0.85rem; font-weight: 700; margin-top: 0.25rem; display: none; }
+.campo-invalido { border-color: var(--corte) !important; }
+.mensaje-exito {
+  display: none; background-color: var(--ok); color: #fff;
+  padding: 1rem 1.2rem; border-radius: 10px; font-weight: 700;
+}
+
+.datos-contacto { list-style: none; display: grid; gap: 1rem; }
+.datos-contacto li { display: flex; gap: 0.8rem; align-items: flex-start; }
+.datos-contacto .icono { font-size: 1.4rem; }
+.datos-contacto strong { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gris); }
+
+/* ----------------- 11. PIE DE PÁGINA ----------------- */
+.pie {
+  background-color: #1c1715; color: #d9cfc4; margin-top: 3rem;
+  padding: 2.6rem 0 1.6rem; position: relative;
+}
+/* La misma cinta de guarda del héroe corona el pie: el poncho
+   abre y cierra la página (coherencia de marca). */
+.pie::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 10px;
+  background: repeating-linear-gradient(-45deg, #a32633 0 14px, #26201e 14px 28px, #faf6ef 28px 32px);
+}
+.pie-grilla { display: grid; gap: 1.6rem; grid-template-columns: 1fr; }
+.pie h4 { color: #fff; margin-bottom: 0.6rem; font-size: 0.95rem; letter-spacing: 1px; text-transform: uppercase; }
+.pie ul { list-style: none; }
+.pie a { color: #d9cfc4; text-decoration: none; }
+.pie a:hover { color: #fff; text-decoration: underline; }
+.pie .legal {
+  margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #3a322b;
+  font-size: 0.8rem; color: #a89c90; text-align: center;
+}
+
+/* ============================================================
+   12. ESTILOS DE LA PÁGINA DE LÍNEA (Expreso El Cardón)
+   Reutiliza el sistema de la terminal y suma el color terracota.
+   ============================================================ */
+.pagina-cardon .heroe {
+  background:
+    linear-gradient(115deg, rgba(38,32,30,0.9) 35%, rgba(194,84,43,0.8)),
+    repeating-linear-gradient(45deg, #8a3a1c 0 26px, #26201e 26px 52px);
+}
+
+/* Coherencia de identidad: dentro de la página de la línea, todos los
+   acentos del sistema (cinta de guarda, métricas, subrayados de título,
+   CTA de la nav y sombras de botón) pasan al terracota del servicio.
+   Misma estructura, color propio: la regla de la cátedra. */
+.pagina-cardon .heroe::after,
+.pagina-cardon .pie::before {
+  background: repeating-linear-gradient(-45deg, #c2542b 0 14px, #26201e 14px 28px, #faf6ef 28px 32px);
+}
+.pagina-cardon .metrica { border-top-color: var(--ec-terracota); }
+.pagina-cardon .seccion h2::after { background-color: var(--ec-terracota); }
+.pagina-cardon .kicker { color: var(--ec-terracota); }
+.pagina-cardon .nav-cta { background-color: var(--ec-terracota); }
+.pagina-cardon .nav-cta:hover { background-color: #a34620 !important; }
+.pagina-cardon .boton-primario:hover { box-shadow: 0 10px 22px rgba(194, 84, 43, 0.4); }
+.pagina-cardon ::selection { background-color: var(--ec-terracota); }
+
+/* Recorrido: línea de tiempo VERTICAL (una parada debajo de la otra).
+   Decisión clave de UX móvil: en el celular se lee de arriba hacia
+   abajo, nunca en horizontal con desplazamiento lateral. */
+.recorrido { list-style: none; position: relative; padding-left: 2rem; }
+.recorrido::before {
+  content: ""; position: absolute; left: 9px; top: 6px; bottom: 6px;
+  width: 4px; border-radius: 2px; background-color: var(--ec-terracota);
+}
+.parada { position: relative; padding: 0 0 1.6rem 1rem; }
+.parada::before {
+  content: ""; position: absolute; left: -1.98rem; top: 6px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background-color: var(--blanco); border: 4px solid var(--ec-terracota);
+}
+.parada.parada-cabecera::before { background-color: var(--ec-terracota); }
+.parada h3 { font-size: 1.05rem; }
+.parada .km { font-size: 0.8rem; font-weight: 800; color: var(--ec-terracota); text-transform: uppercase; letter-spacing: 1px; }
+.parada p { color: var(--gris); font-size: 0.92rem; max-width: 34rem; }
+.parada figure { margin-top: 0.6rem; }
+.parada figcaption { font-size: 0.78rem; color: var(--gris); margin-top: 0.3rem; }
+.parada .marco-foto { border-radius: 10px; overflow: hidden; border: 1px solid var(--borde); max-width: 430px; }
+
+/* Tablas de horarios y tarifas */
+.tabla { width: 100%; border-collapse: collapse; background-color: var(--blanco); border-radius: var(--radio); overflow: hidden; box-shadow: var(--sombra); }
+.tabla th { background-color: var(--ec-terracota); color: #fff; padding: 0.8rem; text-align: left; font-size: 0.9rem; }
+.tabla td { padding: 0.75rem 0.8rem; border-bottom: 1px solid var(--borde); font-size: 0.95rem; }
+.tabla tr:last-child td { border-bottom: none; }
+
+/* Gráfico de frecuencia hecho solo con CSS (barras) */
+.grafico-frecuencia { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.6rem; align-items: end; height: 150px; margin-top: 1rem; }
+.barra { background-color: var(--ec-terracota); border-radius: 6px 6px 0 0; position: relative; }
+.barra span {
+  position: absolute; bottom: -1.6rem; left: 50%; transform: translateX(-50%);
+  font-size: 0.72rem; color: var(--gris); white-space: nowrap;
+}
+
+/* Accesibilidad del vehículo */
+.grilla-accesibilidad { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+/* Buscador de paradas */
+.sin-resultados { color: var(--gris); font-style: italic; display: none; }
+
+/* Estado del servicio (chapa de estado en el héroe) */
+.chapa-estado {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background-color: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.35);
+  color: #fff; padding: 0.35rem 0.9rem; border-radius: 999px; font-size: 0.85rem; font-weight: 700;
+}
+
+/* ----------------- 13. DISEÑO RESPONSIVE (pantallas grandes) ----------------- */
+@media (min-width: 640px) {
+  .metricas { grid-template-columns: repeat(4, 1fr); }
+  .formulario-viaje { grid-template-columns: 1fr 1fr auto; align-items: end; }
+  .grilla-instalaciones { grid-template-columns: repeat(3, 1fr); }
+  .pie-grilla { grid-template-columns: 2fr 1fr 1fr; }
+}
+
+@media (min-width: 900px) {
+  .grilla-servicios { grid-template-columns: repeat(4, 1fr); }
+  .plano-caja { grid-template-columns: 1.6fr 1fr; align-items: start; }
+  .dos-columnas { display: grid; grid-template-columns: 1fr 1.2fr; gap: 2.4rem; align-items: start; }
+}
+
+/* Menú móvil: en pantallas chicas el menú se pliega y se abre
+   con el botón hamburguesa manejado por JavaScript. */
+@media (max-width: 760px) {
+  .boton-menu { display: block; }
+  .nav-principal {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    background-color: var(--blanco); border-bottom: 3px solid var(--marca);
+    box-shadow: var(--sombra);
+  }
+  .nav-principal.abierto { display: block; }
+  .nav-lista { flex-direction: column; align-items: stretch; padding: 0.6rem 1rem 1rem; }
+  .nav-lista a { padding: 0.9rem; font-size: 1.05rem; }
+  .nav-lista a.activo { border-bottom: none; border-left: 4px solid var(--marca); border-radius: 8px; }
+}

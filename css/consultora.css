@@ -1,0 +1,333 @@
+/* ============================================================
+   SAMSON DIGITAL — Consultora de diseño y desarrollo web
+   Hoja de estilos del sitio de la consultora (Actividad 1).
+   Autor: Ricardo Salomon Samson Sanchez — UADE — DDW 2026
+   ------------------------------------------------------------
+   Identidad propia, distinta de la del proyecto Terminal Güemes:
+   la consultora (petróleo + ámbar) es la vidriera del estudio y es
+   deliberadamente la más rica en detalles visuales; la terminal es
+   cálida, regional y sobria (rojo güemesiano, servicio público).
+   Un proyecto real se distingue de la marca del estudio que lo hizo.
+   ============================================================ */
+
+:root {
+  --petroleo: #0e5e56;        /* color primario de marca */
+  --petroleo-oscuro: #0a423c;
+  --ambar: #e8a13c;           /* acento / llamados a la acción */
+  --tinta: #1d2726;           /* texto principal */
+  --gris: #5f6b69;            /* texto secundario */
+  --niebla: #f4f7f6;          /* fondo general */
+  --blanco: #ffffff;
+  --borde: #dde5e3;
+  --fuente: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --radio: 14px;
+  --sombra: 0 4px 18px rgba(29, 39, 38, 0.08);
+  --ancho-max: 1080px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--fuente);
+  background-color: var(--niebla);
+  /* Trama de puntos sutil, como papel de calco de diseñador:
+     un gradiente radial diminuto que se repite. Firma visual del
+     estudio (la terminal, en cambio, usa fondo liso: cada sitio
+     tiene su carácter). */
+  background-image: radial-gradient(rgba(14, 94, 86, 0.07) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+  color: var(--tinta);
+  line-height: 1.65;
+  font-size: 1.05rem;
+}
+
+img, svg { max-width: 100%; display: block; }
+
+/* Los enlaces heredan el color del texto (los estilos de cada
+   componente deciden el suyo): evita el azul por defecto en las
+   tarjetas que son enlaces completos. */
+a { color: inherit; }
+
+.contenedor { max-width: var(--ancho-max); margin: 0 auto; padding: 0 1.2rem; }
+
+/* ---------------- Encabezado ---------------- */
+.encabezado {
+  position: sticky; top: 0; z-index: 50;
+  background-color: var(--blanco);
+  box-shadow: var(--sombra);
+}
+/* Filete inferior en degradé petróleo → ámbar (pseudo-elemento):
+   los dos colores de la marca conviven en una sola línea. */
+.encabezado::after {
+  content: ""; display: block; height: 3px;
+  background: linear-gradient(90deg, var(--petroleo) 30%, var(--ambar));
+}
+.encabezado-interno {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0.7rem 1.2rem; max-width: var(--ancho-max); margin: 0 auto;
+}
+.logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--tinta); font-weight: 800; }
+.logo-icono { width: 40px; height: 40px; }
+.logo-texto { font-size: 1.05rem; line-height: 1.1; }
+.logo-texto small { display: block; font-size: 0.66rem; font-weight: 600; color: var(--gris); letter-spacing: 2px; }
+
+.nav-lista { display: flex; gap: 0.3rem; list-style: none; align-items: center; }
+.nav-lista a {
+  display: block; padding: 0.55rem 0.9rem; text-decoration: none;
+  color: var(--tinta); font-weight: 600; font-size: 0.95rem; border-radius: 8px;
+}
+.nav-lista a:hover { background-color: var(--niebla); color: var(--petroleo); }
+.nav-lista a.activo { color: var(--petroleo); border-bottom: 3px solid var(--ambar); border-radius: 8px 8px 0 0; }
+
+.boton-menu {
+  display: none; background: none; border: 2px solid var(--borde); border-radius: 8px;
+  padding: 0.4rem 0.6rem; cursor: pointer; font-size: 1.25rem; color: var(--tinta);
+}
+
+/* ---------------- Héroe ---------------- */
+.heroe {
+  background: linear-gradient(120deg, var(--petroleo-oscuro), var(--petroleo) 60%, #147c72);
+  color: #f2f7f6; padding: 4.4rem 0;
+  border-radius: 0 0 32px 32px; /* base redondeada: suaviza el bloque institucional */
+  position: relative;
+  overflow: hidden; /* recorta el resplandor decorativo */
+}
+/* Resplandor ámbar en la esquina: un gradiente radial gigante y
+   suave que da profundidad al héroe sin usar ninguna imagen. */
+.heroe::before {
+  content: ""; position: absolute; top: -180px; right: -140px;
+  width: 520px; height: 520px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 161, 60, 0.35), transparent 65%);
+}
+.heroe .contenedor { position: relative; } /* el texto queda sobre el resplandor */
+
+/* Palabra acentuada del titular: color ámbar + subrayado ondulado
+   (text-decoration-style: wavy), el trazo "a mano" del estudio. */
+.acento-palabra {
+  color: var(--ambar);
+  text-decoration: underline wavy rgba(232, 161, 60, 0.55);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 8px;
+}
+
+/* Tipografía del estudio: titulares apenas más compactos
+   (letter-spacing negativo), gesto editorial que diferencia a la
+   consultora de la terminal. */
+.heroe h1, .seccion h2 { letter-spacing: -0.6px; }
+/* Hilo ámbar al pie del héroe: firma sutil del estudio */
+.heroe::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 6px;
+  border-radius: 0 0 32px 32px;
+  background: linear-gradient(90deg, var(--ambar), #f0b45e 40%, transparent 85%);
+}
+
+/* Kicker con guion de marca adelante (::before) */
+.kicker {
+  text-transform: uppercase; letter-spacing: 3px; font-size: 0.76rem; font-weight: 700; color: var(--ambar);
+  display: inline-flex; align-items: center; gap: 0.5rem;
+}
+.kicker::before { content: ""; width: 26px; height: 3px; border-radius: 2px; background-color: currentColor; }
+.heroe h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.12; margin: 0.4rem 0 1rem; }
+.heroe .bajada { max-width: 34rem; font-size: 1.1rem; color: #d7e5e2; margin-bottom: 1.6rem; }
+
+.botonera { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
+/* Botones píldora (border-radius 999px) con microinteracción:
+   se elevan al pasar el mouse (transform) y la flecha del primario,
+   dibujada con ::after, se desplaza (transition). */
+.boton {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.9rem 1.8rem; border-radius: 999px; text-decoration: none;
+  font-weight: 700; font-size: 1rem; border: 2px solid transparent; cursor: pointer; font-family: var(--fuente);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+.boton:hover { transform: translateY(-3px); }
+.boton:active { transform: translateY(-1px); }
+.boton-primario { background-color: var(--ambar); color: #2b1c05; }
+.boton-primario::after { content: "→"; transition: transform 0.18s ease; }
+.boton-primario:hover { background-color: #f0b45e; box-shadow: 0 10px 22px rgba(232, 161, 60, 0.4); }
+.boton-primario:hover::after { transform: translateX(4px); }
+.boton-secundario { border-color: #f2f7f6; color: #f2f7f6; background: transparent; }
+.boton-secundario:hover { background-color: rgba(255,255,255,0.12); box-shadow: 0 10px 22px rgba(0,0,0,0.2); }
+
+/* CTA en la barra de navegación: la acción comercial más importante
+   ("Trabajemos juntos") acompaña al usuario en todo el sitio. */
+.nav-cta {
+  background-color: var(--ambar); color: #2b1c05 !important;
+  border-radius: 999px; padding: 0.5rem 1.1rem !important; font-weight: 700;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+.nav-cta:hover { background-color: #f0b45e !important; transform: translateY(-2px); }
+
+/* Detalles de marca */
+::selection { background-color: var(--petroleo); color: #fff; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--petroleo); outline-offset: 2px; border-radius: 8px; }
+
+/* ---------------- Secciones ---------------- */
+.seccion { padding: 3.6rem 0; }
+.seccion-alterna { background-color: var(--blanco); }
+/* Título con acento: barrita redondeada en petróleo bajo cada h2 */
+.seccion h2 { font-size: clamp(1.5rem, 3.2vw, 2.1rem); margin: 0.3rem 0 0.9rem; position: relative; padding-bottom: 0.55rem; }
+.seccion h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 52px; height: 5px; border-radius: 3px; background-color: var(--petroleo); }
+.seccion .intro { color: var(--gris); max-width: 42rem; margin-bottom: 2rem; }
+
+.grilla { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
+
+.tarjeta {
+  background-color: var(--blanco); border: 1px solid var(--borde);
+  border-radius: 18px; padding: 1.5rem; box-shadow: var(--sombra);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative; overflow: hidden;
+}
+/* Hilo superior en degradé que "se enciende" al pasar el mouse */
+.tarjeta::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--petroleo), var(--ambar));
+  opacity: 0.35; transition: opacity 0.2s ease;
+}
+.tarjeta:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(29, 39, 38, 0.14); }
+.tarjeta:hover::before { opacity: 1; }
+
+/* Icono dentro de una moneda suave: círculo con tinte de marca */
+.tarjeta .icono {
+  font-size: 1.6rem; display: inline-flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px; border-radius: 50%;
+  background-color: rgba(14, 94, 86, 0.1); border: 1px solid rgba(14, 94, 86, 0.18);
+}
+.tarjeta h3 { margin: 0.5rem 0 0.4rem; font-size: 1.12rem; }
+.tarjeta p { color: var(--gris); font-size: 0.96rem; }
+
+/* Tarjeta de proyecto destacado (enlaza a la Terminal Güemes) */
+.proyecto-destacado {
+  display: grid; gap: 0; overflow: hidden; text-decoration: none; color: inherit;
+  background-color: var(--blanco); border: 1px solid var(--borde);
+  border-radius: var(--radio); box-shadow: var(--sombra); transition: transform 0.15s ease;
+}
+.proyecto-destacado:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(29, 39, 38, 0.18); }
+.proyecto-destacado .proyecto-portada { transition: filter 0.2s ease; }
+.proyecto-destacado:hover .proyecto-portada { filter: brightness(1.12); } /* la portada "se enciende" al pasar */
+.proyecto-portada {
+  background:
+    linear-gradient(115deg, rgba(38,32,30,0.55), rgba(163,38,51,0.5)),
+    repeating-linear-gradient(45deg, #7e1c27 0 26px, #26201e 26px 52px);
+  min-height: 170px; display: flex; align-items: flex-end; padding: 1.2rem;
+}
+.proyecto-portada span {
+  background-color: rgba(0,0,0,0.55); color: #fff; padding: 0.3rem 0.8rem;
+  border-radius: 8px; font-weight: 700; font-size: 0.9rem;
+}
+.proyecto-cuerpo { padding: 1.3rem 1.5rem; }
+.proyecto-cuerpo h3 { margin-bottom: 0.4rem; }
+.proyecto-cuerpo p { color: var(--gris); font-size: 0.95rem; }
+.etiquetas { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem; }
+.etiquetas span {
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px;
+  background-color: var(--niebla); border: 1px solid var(--borde);
+  padding: 0.2rem 0.7rem; border-radius: 999px; color: var(--petroleo);
+  display: inline-flex; align-items: center; gap: 0.35rem;
+}
+/* Puntito ámbar delante de cada etiqueta: chip de tecnología */
+.etiquetas span::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%;
+  background-color: var(--ambar);
+}
+
+/* Ficha de la persona (Nosotros) */
+.ficha-persona {
+  display: grid; gap: 1.4rem; align-items: center;
+  background-color: var(--blanco); border: 1px solid var(--borde);
+  border-radius: var(--radio); padding: 1.6rem; box-shadow: var(--sombra);
+}
+.avatar {
+  width: 130px; height: 130px; border-radius: 50%;
+  border: 5px solid var(--ambar); overflow: hidden; background-color: var(--petroleo);
+  /* Doble anillo con box-shadow: marco de retrato profesional */
+  box-shadow: 0 0 0 4px var(--blanco), 0 0 0 6px rgba(14, 94, 86, 0.35);
+  transition: transform 0.2s ease;
+}
+.ficha-persona:hover .avatar { transform: scale(1.05) rotate(-2deg); } /* guiño humano al pasar */
+
+/* ---------------- Banda de cita (manifiesto del estudio) ---------------- */
+.banda-cita {
+  background: linear-gradient(120deg, var(--petroleo-oscuro), var(--petroleo));
+  color: #f2f7f6; padding: 3rem 0; border-radius: 32px;
+  margin: 0 1.2rem; position: relative; overflow: hidden;
+}
+.banda-cita::before {
+  content: "\201C"; /* comilla tipográfica gigante como marca de agua */
+  position: absolute; top: -50px; left: 24px; font-size: 13rem;
+  color: rgba(232, 161, 60, 0.25); font-family: Georgia, serif; line-height: 1;
+}
+.banda-cita blockquote {
+  max-width: 46rem; margin: 0 auto; padding: 0 1.6rem;
+  font-size: clamp(1.25rem, 2.6vw, 1.7rem); font-weight: 700; line-height: 1.45;
+  border: none; position: relative;
+}
+.banda-cita cite {
+  display: block; margin-top: 1rem; font-style: normal; font-weight: 600;
+  font-size: 0.95rem; color: var(--ambar);
+}
+.ficha-persona h3 { font-size: 1.25rem; }
+.ficha-persona .rol { color: var(--petroleo); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+.ficha-persona p { color: var(--gris); }
+
+/* Lista de valores / misión / visión */
+.lista-valores { list-style: none; display: grid; gap: 1rem; }
+.lista-valores li { background-color: var(--blanco); border-left: 5px solid var(--ambar); border-radius: 10px; padding: 1rem 1.2rem; box-shadow: var(--sombra); }
+.lista-valores strong { color: var(--petroleo); }
+
+/* ---------------- Formulario ---------------- */
+.panel { background-color: var(--blanco); border: 1px solid var(--borde); border-radius: var(--radio); padding: 1.6rem; box-shadow: var(--sombra); }
+.formulario { display: grid; gap: 1rem; }
+label { font-weight: 700; font-size: 0.9rem; display: block; margin-bottom: 0.3rem; }
+input, textarea, select {
+  width: 100%; padding: 0.8rem; border: 2px solid var(--borde); border-radius: 10px;
+  font-family: var(--fuente); font-size: 1rem; background-color: var(--niebla); color: var(--tinta);
+}
+input:focus, textarea:focus, select:focus { outline: 3px solid rgba(14, 94, 86, 0.3); border-color: var(--petroleo); }
+.error-campo { color: #b3282d; font-size: 0.85rem; font-weight: 700; margin-top: 0.25rem; display: none; }
+.campo-invalido { border-color: #b3282d !important; }
+.mensaje-exito { display: none; background-color: var(--petroleo); color: #fff; padding: 1rem 1.2rem; border-radius: 10px; font-weight: 700; }
+
+.datos-contacto { list-style: none; display: grid; gap: 1rem; }
+.datos-contacto li { display: flex; gap: 0.8rem; }
+.datos-contacto .icono { font-size: 1.3rem; }
+.datos-contacto strong { display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gris); }
+
+/* ---------------- Pie ---------------- */
+.pie { background-color: #122220; color: #c4d2cf; margin-top: 3rem; border-top: 5px solid var(--ambar); padding: 2.4rem 0 1.4rem; }
+.pie-grilla { display: grid; gap: 1.6rem; grid-template-columns: 1fr; }
+.pie h4 { color: #fff; margin-bottom: 0.6rem; font-size: 0.92rem; letter-spacing: 1px; text-transform: uppercase; }
+.pie ul { list-style: none; }
+.pie a { color: #c4d2cf; text-decoration: none; }
+.pie a:hover { color: #fff; text-decoration: underline; }
+.pie .legal { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #27403c; font-size: 0.8rem; color: #93a5a1; text-align: center; }
+
+/* Video embebido (presentación del proyecto) */
+.marco-video { position: relative; aspect-ratio: 16 / 9; border-radius: var(--radio); overflow: hidden; border: 1px solid var(--borde); background-color: #122220; box-shadow: var(--sombra); }
+.marco-video iframe { width: 100%; height: 100%; border: 0; }
+.marco-video .placeholder-video {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 0.6rem; color: #c4d2cf; text-align: center; padding: 1rem;
+}
+
+/* ---------------- Responsive ---------------- */
+@media (min-width: 640px) {
+  .grilla-3 { grid-template-columns: repeat(3, 1fr); }
+  .ficha-persona { grid-template-columns: auto 1fr; }
+  .pie-grilla { grid-template-columns: 2fr 1fr 1fr; }
+  .dos-columnas { display: grid; grid-template-columns: 1fr 1.2fr; gap: 2.4rem; align-items: start; }
+}
+
+@media (max-width: 760px) {
+  .boton-menu { display: block; }
+  .nav-principal {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    background-color: var(--blanco); border-bottom: 3px solid var(--petroleo); box-shadow: var(--sombra);
+  }
+  .nav-principal.abierto { display: block; }
+  .nav-lista { flex-direction: column; align-items: stretch; padding: 0.6rem 1rem 1rem; }
+  .nav-lista a { padding: 0.9rem; font-size: 1.05rem; }
+  .nav-lista a.activo { border-bottom: none; border-left: 4px solid var(--ambar); border-radius: 8px; }
+}

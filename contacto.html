@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contacto de Samson Digital: formulario de consultas, correo, teléfono y ubicación en Salta.">
+  <title>Contacto — Samson Digital</title>
+  <link rel="stylesheet" href="css/consultora.css">
+</head>
+<body>
+
+  <header class="encabezado">
+    <div class="encabezado-interno">
+      <a href="index.html" class="logo" aria-label="Samson Digital, ir al inicio">
+        <svg class="logo-icono" viewBox="0 0 44 44" role="img" aria-hidden="true">
+          <rect x="2" y="2" width="40" height="40" rx="10" fill="#0e5e56"/>
+          <path d="M14 28 a8 8 0 1 0 8 -14 a8 8 0 1 1 8 14" fill="none" stroke="#e8a13c" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span class="logo-texto">SAMSON DIGITAL<small>DISEÑO + DESARROLLO WEB</small></span>
+      </a>
+      <button class="boton-menu" id="botonMenu" aria-label="Abrir menú de navegación" aria-expanded="false">☰</button>
+      <nav class="nav-principal" id="navPrincipal" aria-label="Navegación principal">
+        <ul class="nav-lista">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="contacto.html" class="activo">Contacto</a></li>
+          <li><a class="nav-cta" href="#formularioConsultora">Trabajemos juntos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="seccion">
+      <div class="contenedor dos-columnas">
+
+        <div>
+          <p class="kicker">HABLEMOS DE TU PROYECTO</p>
+          <h2>Contacto.</h2>
+          <p class="intro">Contanos qué necesitás y te respondemos con una propuesta dentro de las 48 horas hábiles.</p>
+          <ul class="datos-contacto">
+            <li><span class="icono">📍</span><div><strong>Ubicación</strong><p>Ciudad de Salta, Argentina (trabajo remoto para todo el país)</p></div></li>
+            <li><span class="icono">✉️</span><div><strong>Correo</strong><p>hola@samsondigital.com.ar</p></div></li>
+            <li><span class="icono">📞</span><div><strong>Teléfono / WhatsApp</strong><p>+54 387 500-0000 · Lun a Vie de 9 a 18 h</p></div></li>
+            <li><span class="icono">🔗</span><div><strong>Redes</strong><p>GitHub · LinkedIn (enlaces en la página personal)</p></div></li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3 style="margin-bottom:1rem;">Formulario de consulta</h3>
+          <!-- Validación hecha con JavaScript propio (js/consultora.js) -->
+          <form class="formulario" id="formularioConsultora" novalidate>
+            <div>
+              <label for="nombre">Nombre *</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" autocomplete="name">
+              <p class="error-campo" id="errorNombre">Escribí tu nombre (mínimo 2 letras).</p>
+            </div>
+            <div>
+              <label for="email">Correo electrónico *</label>
+              <input type="email" id="email" name="email" placeholder="tu@correo.com" autocomplete="email">
+              <p class="error-campo" id="errorEmail">Ingresá un correo válido, por ejemplo nombre@dominio.com.</p>
+            </div>
+            <div>
+              <label for="mensaje">Mensaje *</label>
+              <textarea id="mensaje" name="mensaje" rows="5" placeholder="Contanos brevemente tu proyecto o consulta…"></textarea>
+              <p class="error-campo" id="errorMensaje">El mensaje tiene que tener al menos 10 caracteres.</p>
+            </div>
+            <button type="submit" class="boton boton-primario">Enviar mensaje</button>
+            <p class="mensaje-exito" id="mensajeExito" role="status"></p>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie-grilla">
+      <div><h4>Samson Digital</h4><p>Consultora ficticia de diseño y desarrollo web creada como proyecto integrador de la materia. Salta, Argentina.</p></div>
+      <div><h4>Mapa del sitio</h4><ul><li><a href="index.html">Inicio</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+      <div><h4>Proyecto</h4><ul><li><a href="terminal/index.html">Terminal Güemes</a></li><li><a href="terminal/linea-cardon/index.html">Expreso El Cardón</a></li><li><a href="docs/carpeta-de-diseno.pdf">Documentación (PDF)</a></li><li><a href="personal/index.html">Página personal</a></li></ul></div>
+    </div>
+    <p class="legal contenedor">Sitio ficticio con fines académicos — Trabajo Práctico · UADE · Diseño y Desarrollo Web (10244) · 2026 · Ricardo Salomon Samson Sanchez.</p>
+  </footer>
+
+  <script src="js/consultora.js"></script>
+</body>
+</html>

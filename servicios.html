@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Servicios de Samson Digital: diseño UX/UI, desarrollo front-end, publicación y dominios, y proyectos realizados.">
+  <title>Servicios — Samson Digital</title>
+  <link rel="stylesheet" href="css/consultora.css">
+</head>
+<body>
+
+  <header class="encabezado">
+    <div class="encabezado-interno">
+      <a href="index.html" class="logo" aria-label="Samson Digital, ir al inicio">
+        <svg class="logo-icono" viewBox="0 0 44 44" role="img" aria-hidden="true">
+          <rect x="2" y="2" width="40" height="40" rx="10" fill="#0e5e56"/>
+          <path d="M14 28 a8 8 0 1 0 8 -14 a8 8 0 1 1 8 14" fill="none" stroke="#e8a13c" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span class="logo-texto">SAMSON DIGITAL<small>DISEÑO + DESARROLLO WEB</small></span>
+      </a>
+      <button class="boton-menu" id="botonMenu" aria-label="Abrir menú de navegación" aria-expanded="false">☰</button>
+      <nav class="nav-principal" id="navPrincipal" aria-label="Navegación principal">
+        <ul class="nav-lista">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="servicios.html" class="activo">Servicios</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a class="nav-cta" href="contacto.html">Trabajemos juntos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="seccion">
+      <div class="contenedor">
+        <p class="kicker">QUÉ HACEMOS Y CÓMO</p>
+        <h2>Servicios en detalle.</h2>
+        <p class="intro">Trabajamos por etapas: primero entender al usuario, después diseñar, recién entonces programar, y por último publicar y medir.</p>
+
+        <div class="grilla grilla-3">
+          <article class="tarjeta">
+            <span class="icono">🔎</span>
+            <h3>1 · Investigación y UX</h3>
+            <p>Definición de público objetivo y sus necesidades, arquitectura de la información y mapa del sitio. Aplicamos heurísticas de Nielsen y leyes de UX (Hick, Fitts, Gestalt) para que navegar sea simple.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="icono">🖌️</span>
+            <h3>2 · Diseño UI y prototipado</h3>
+            <p>Wireframes de baja fidelidad y prototipos navegables en Figma. Sistema de diseño: paleta con roles definidos, tipografía, componentes y estados.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="icono">🧱</span>
+            <h3>3 · Maquetado semántico</h3>
+            <p>HTML5 con etiquetas estructurales (header, nav, main, section, footer) que favorecen la accesibilidad y el posicionamiento. Mobile first con Flexbox y Grid.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="icono">⚡</span>
+            <h3>4 · Interactividad con JavaScript</h3>
+            <p>Validación de formularios, buscadores, contenido dinámico con el DOM y eventos. Cuando el proyecto lo justifica, frameworks y librerías (React, Tailwind, jQuery).</p>
+          </article>
+          <article class="tarjeta">
+            <span class="icono">🌐</span>
+            <h3>5 · Publicación</h3>
+            <p>Elección del hosting según la escala (GitHub Pages, Vercel, Hostinger), registro de dominio en NIC.ar, configuración de DNS y certificado HTTPS.</p>
+          </article>
+          <article class="tarjeta">
+            <span class="icono">✅</span>
+            <h3>6 · Validación y mantenimiento</h3>
+            <p>Validadores W3C de HTML y CSS, revisión de enlaces, pruebas en dispositivos reales y ajustes de contenido tras la publicación.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion-alterna" id="proyectos">
+      <div class="contenedor">
+        <p class="kicker">PROYECTOS</p>
+        <h2>Lo que ya construimos.</h2>
+        <p class="intro">Cada proyecto enlaza a su sitio publicado y a su documentación.</p>
+
+        <a class="proyecto-destacado" href="terminal/index.html">
+          <div class="proyecto-portada"><span>terminal-guemes · sitio en vivo →</span></div>
+          <div class="proyecto-cuerpo">
+            <h3>Terminal Güemes — Centro de Transporte de Salta</h3>
+            <p>Portal de una terminal con 4 servicios integrados, buscador "¿Cómo llego?", alertas en tiempo real, plano interactivo y la página de línea Expreso El Cardón (Salta – Cafayate).</p>
+            <div class="etiquetas"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Mobile first</span><span>Accesibilidad</span></div>
+          </div>
+        </a>
+
+        <div class="grilla grilla-3" style="margin-top:1.2rem;">
+          <a class="tarjeta" href="terminal/linea-cardon/index.html" style="text-decoration:none;"><span class="icono">🌵</span><h3>Expreso El Cardón</h3><p>One page de la línea Salta – Cafayate con recorrido, horarios y accesibilidad.</p></a>
+          <a class="tarjeta" href="personal/index.html" style="text-decoration:none;"><span class="icono">👤</span><h3>Portfolio personal</h3><p>Página personal del integrante de la consultora (Actividad 1).</p></a>
+          <a class="tarjeta" href="docs/carpeta-de-diseno.pdf" style="text-decoration:none;"><span class="icono">📄</span><h3>Carpeta de diseño</h3><p>Documento PDF con toda la fundamentación del proyecto.</p></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie-grilla">
+      <div><h4>Samson Digital</h4><p>Consultora ficticia de diseño y desarrollo web creada como proyecto integrador de la materia. Salta, Argentina.</p></div>
+      <div><h4>Mapa del sitio</h4><ul><li><a href="index.html">Inicio</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="contacto.html">Contacto</a></li></ul></div>
+      <div><h4>Proyecto</h4><ul><li><a href="terminal/index.html">Terminal Güemes</a></li><li><a href="terminal/linea-cardon/index.html">Expreso El Cardón</a></li><li><a href="docs/carpeta-de-diseno.pdf">Documentación (PDF)</a></li><li><a href="personal/index.html">Página personal</a></li></ul></div>
+    </div>
+    <p class="legal contenedor">Sitio ficticio con fines académicos — Trabajo Práctico · UADE · Diseño y Desarrollo Web (10244) · 2026 · Ricardo Salomon Samson Sanchez.</p>
+  </footer>
+
+  <script src="js/consultora.js"></script>
+</body>
+</html>

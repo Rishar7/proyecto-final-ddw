@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Página personal de Ricardo Salomon Samson Sanchez: técnico en sistemas y estudiante de desarrollo web en UADE. Perfil, habilidades y proyectos.">
+  <title>Ricardo Samson — Página personal</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- One page personal (Actividad 1): solo HTML y CSS.
+       Fue la primera entrega de la materia, cuando todavía no
+       habíamos visto JavaScript; se mejoró con la devolución
+       de la profesora (enlaces operativos y más contenido). -->
+
+  <header class="encabezado">
+    <nav class="nav" aria-label="Navegación principal">
+      <a class="marca" href="#inicio">RS<span>.</span></a>
+      <ul>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== PORTADA ===== -->
+    <section class="portada" id="inicio">
+      <p class="saludo">Hola, soy</p>
+      <h1>Ricardo Salomon<br>Samson Sanchez</h1>
+      <p class="bajada">Emprendedor: fundador y dueño de una marca de ropa desde hace 5 años. Estudiante de Administración de Empresas con doble titulación en Marketing (UADE), sumando el desarrollo web a mi caja de herramientas. Desde Salta, Argentina.</p>
+      <div class="botones">
+        <a class="boton" href="#proyectos">Ver mis proyectos</a>
+        <a class="boton boton-borde" href="#contacto">Contactarme</a>
+      </div>
+    </section>
+
+    <!-- ===== SOBRE MÍ ===== -->
+    <section class="bloque" id="sobre-mi">
+      <h2><span>01.</span> Sobre mí</h2>
+      <p>Hace 5 años fundé mi propia marca de ropa y desde entonces la dirijo: producto, identidad, redes, ventas y atención al cliente. En paralelo estudio Administración de Empresas con doble titulación en Marketing en UADE, para llevar el negocio con base y no solo con intuición.</p>
+      <p>El desarrollo web entró por necesidad y se quedó por gusto: una marca hoy vive en la pantalla, y quería dejar de depender de terceros para construir esa vidriera digital. Vender ropa me enseñó lo que el diseño web llama experiencia de usuario: si el cliente no entiende, no encuentra o no confía, se va. Con ese ojo diseño y programo.</p>
+      <ul class="datos-rapidos">
+        <li><strong>📍</strong> Salta, Argentina</li>
+        <li><strong>🎓</strong> Adm. de Empresas + doble titulación en Marketing — UADE (en curso)</li>
+        <li><strong>👕</strong> Dueño de una marca de ropa (5 años)</li>
+        <li><strong>🌱</strong> Aprendiendo: JavaScript, UX, React</li>
+      </ul>
+    </section>
+
+    <!-- ===== HABILIDADES ===== -->
+    <section class="bloque" id="habilidades">
+      <h2><span>02.</span> Habilidades</h2>
+      <div class="grilla-habilidades">
+        <article><h3>Front-end</h3><p>HTML5 semántico · CSS3 (Flexbox, Grid, variables) · JavaScript (DOM, eventos, validación) · Diseño responsive mobile first</p></article>
+        <article><h3>Diseño</h3><p>Figma (wireframes y prototipos) · Heurísticas de Nielsen · Leyes de UX · Sistemas de diseño y paletas funcionales</p></article>
+        <article><h3>Publicación</h3><p>Git y GitHub Pages · Dominios y DNS (NIC.ar) · Validación W3C · Nociones de hosting (Vercel, Hostinger)</p></article>
+        <article><h3>Marca y negocio</h3><p>Gestión de una marca de ropa · Identidad visual y comunicación · Redes y contenido · Ventas y atención al cliente (la mejor escuela de UX)</p></article>
+      </div>
+    </section>
+
+    <!-- ===== PROYECTOS ===== -->
+    <section class="bloque" id="proyectos">
+      <h2><span>03.</span> Proyectos</h2>
+      <div class="grilla-proyectos">
+        <a class="proyecto" href="../terminal/index.html">
+          <p class="tipo">Proyecto integrador · UADE</p>
+          <h3>Terminal Güemes 🚌</h3>
+          <p>Centro de transporte de Salta: portal con 4 servicios, buscador de viajes, alertas en tiempo real y plano interactivo. HTML, CSS y JavaScript puros.</p>
+          <span class="ver">Ver sitio →</span>
+        </a>
+        <a class="proyecto" href="../terminal/linea-cardon/index.html">
+          <p class="tipo">Página de línea · UADE</p>
+          <h3>Expreso El Cardón 🌵</h3>
+          <p>One page del servicio Salta – Cafayate: recorrido real por la RN 68 con paradas verticales, horarios dinámicos y accesibilidad del vehículo.</p>
+          <span class="ver">Ver sitio →</span>
+        </a>
+        <a class="proyecto" href="../index.html">
+          <p class="tipo">Sitio corporativo · UADE</p>
+          <h3>Samson Digital 💼</h3>
+          <p>Sitio de la consultora que integra todo el proyecto: servicios, portfolio, video de presentación y documentación.</p>
+          <span class="ver">Ver sitio →</span>
+        </a>
+        <article class="proyecto">
+          <p class="tipo">Parcial de la materia</p>
+          <h3>Luno Studio 📷</h3>
+          <p>Landing page de un estudio fotográfico hecha en 2 horas de examen: header, hero, planes con tarjetas y formulario. HTML y CSS.</p>
+          <span class="ver">(entrega del parcial 05/06)</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== CONTACTO ===== -->
+    <section class="bloque" id="contacto">
+      <h2><span>04.</span> Contacto</h2>
+      <p>¿Un proyecto, una duda o una oportunidad? Escribime.</p>
+      <ul class="contactos">
+        <li><a href="mailto:richarpersonal7@gmail.com">✉️ richarpersonal7@gmail.com</a></li>
+        <li><a href="https://github.com/" target="_blank" rel="noopener">🐙 GitHub (completar con tu usuario)</a></li>
+        <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">💼 LinkedIn (completar con tu perfil)</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>Página personal — Trabajo Práctico · UADE · Diseño y Desarrollo Web (10244) · 2026</p>
+    <p><a href="../index.html">← Volver a la consultora Samson Digital</a></p>
+  </footer>
+
+</body>
+</html>
