@@ -366,6 +366,64 @@ select:focus, input:focus, textarea:focus {
 .instalacion h3 { font-size: 1rem; margin: 0.3rem 0; }
 .instalacion p { font-size: 0.88rem; color: var(--gris); }
 
+/* ----------------- GALERÍA DEL PROYECTO DE RENOVACIÓN -----------------
+   Imágenes de la noticia real (fuente citada en cada figcaption).
+   object-fit: cover llena el marco sin deformar la imagen, y el
+   zoom sutil en hover se logra con transform + overflow hidden. */
+.galeria-renovacion { display: grid; grid-template-columns: 1fr; gap: 1.2rem; margin: 1.8rem 0; }
+.galeria-renovacion figure {
+  margin: 0; border-radius: 18px; overflow: hidden;
+  border: 1px solid var(--borde); background-color: var(--blanco); box-shadow: var(--sombra);
+}
+.galeria-renovacion .marco-img { overflow: hidden; }
+.galeria-renovacion img {
+  width: 100%; height: 280px; object-fit: cover; display: block;
+  transition: transform 0.35s ease;
+}
+.galeria-renovacion figure:hover img { transform: scale(1.05); }
+.galeria-renovacion figcaption { padding: 0.85rem 1.1rem; font-size: 0.85rem; color: var(--gris); }
+.galeria-renovacion figcaption strong { color: var(--carbon); display: block; font-size: 0.92rem; }
+
+@media (min-width: 640px) {
+  .galeria-renovacion { grid-template-columns: 1fr 1fr; }
+}
+
+/* Franja de cierre de la sección renovación: la propuesta del estudio */
+.nota-propuesta {
+  border-left: 6px solid var(--marca); background-color: var(--blanco);
+  border: 1px solid var(--borde); border-left-width: 6px; border-left-color: var(--marca);
+  border-radius: var(--radio); padding: 1.2rem 1.4rem; box-shadow: var(--sombra);
+}
+.nota-propuesta strong { color: var(--marca); }
+
+/* ----------------- 8.BIS GALERÍA DEL PROYECTO DE RENOVACIÓN ----------------- */
+/* Dos renders en grilla; el marco recorta la imagen (overflow hidden)
+   y al pasar el mouse la foto hace un zoom suave (transform + transition):
+   misma familia de microinteracciones que el resto del sitio. */
+.galeria-renovacion { display: grid; grid-template-columns: 1fr; gap: 1.4rem; }
+.galeria-renovacion figure { margin: 0; }
+.marco-render {
+  border-radius: 18px; overflow: hidden;
+  border: 1px solid var(--borde); box-shadow: var(--sombra);
+}
+.marco-render img { width: 100%; display: block; transition: transform 0.35s ease; }
+.marco-render:hover img { transform: scale(1.04); }
+.galeria-renovacion figcaption { font-size: 0.85rem; color: var(--gris); margin-top: 0.5rem; max-width: 34rem; }
+.galeria-renovacion figcaption strong { display: block; color: var(--carbon); font-size: 0.95rem; margin-bottom: 0.15rem; }
+
+/* Nota de cierre de la propuesta: caja destacada con borde de marca */
+.nota-propuesta {
+  margin-top: 1.6rem; background-color: var(--blanco);
+  border: 1px solid var(--borde); border-left: 6px solid var(--marca);
+  border-radius: var(--radio); padding: 1.2rem 1.4rem; box-shadow: var(--sombra);
+}
+.nota-propuesta p { color: var(--gris); }
+.nota-propuesta strong { color: var(--marca); }
+
+@media (min-width: 900px) {
+  .galeria-renovacion { grid-template-columns: 1fr 1fr; }
+}
+
 /* ----------------- 9. PREGUNTAS FRECUENTES (acordeón) ----------------- */
 .faq-item { border: 1px solid var(--borde); border-radius: 10px; margin-bottom: 0.8rem; background-color: var(--blanco); overflow: hidden; }
 
